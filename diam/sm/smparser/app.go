@@ -5,10 +5,10 @@
 package smparser
 
 import (
-	"github.com/fiorix/go-diameter/diam"
-	"github.com/fiorix/go-diameter/diam/avp"
-	"github.com/fiorix/go-diameter/diam/datatype"
-	"github.com/fiorix/go-diameter/diam/dict"
+	"github.com/istperm/go-diameter/diam"
+	"github.com/istperm/go-diameter/diam/avp"
+	"github.com/istperm/go-diameter/diam/datatype"
+	"github.com/istperm/go-diameter/diam/dict"
 )
 
 // Role stores information whether SM is initialized as a Client or a Server
@@ -31,13 +31,15 @@ type Application struct {
 // Parse ensures all acct or auth applications in the CE
 // exist in this server's dictionary.
 func (app *Application) Parse(d *dict.Parser, localRole Role) (failedAVP *diam.AVP, err error) {
-	failedAVP, err = app.validateAll(d, avp.AcctApplicationID, app.AcctApplicationID)
-	if err != nil {
-		return failedAVP, err
-	}
-	failedAVP, err = app.validateAll(d, avp.AuthApplicationID, app.AuthApplicationID)
-	if err != nil {
-		return failedAVP, err
+	failedAcct, errAcct := app.validateAll(d, avp.AcctApplicationID, app.AcctApplicationID)
+	failedAuth, errAuth := app.validateAll(d, avp.AuthApplicationID, app.AuthApplicationID)
+	if errAcct != nil && errAuth != nil {
+		if errAcct != nil {
+			return failedAcct, errAcct
+		}
+		if errAuth != nil {
+			return failedAuth, errAuth
+		}
 	}
 	if app.VendorSpecificApplicationID != nil {
 		for _, vs := range app.VendorSpecificApplicationID {

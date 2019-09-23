@@ -7,12 +7,12 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/fiorix/go-diameter/diam"
-	"github.com/fiorix/go-diameter/diam/avp"
-	"github.com/fiorix/go-diameter/diam/datatype"
-	"github.com/fiorix/go-diameter/diam/dict"
-	"github.com/fiorix/go-diameter/diam/sm/smpeer"
-	"github.com/fiorix/go-diameter/examples/s6a_proxy/protos"
+	"github.com/istperm/go-diameter/diam"
+	"github.com/istperm/go-diameter/diam/avp"
+	"github.com/istperm/go-diameter/diam/datatype"
+	"github.com/istperm/go-diameter/diam/dict"
+	"github.com/istperm/go-diameter/diam/sm/smpeer"
+	"github.com/istperm/go-diameter/examples/s6a_proxy/protos"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

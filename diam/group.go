@@ -8,8 +8,8 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/fiorix/go-diameter/diam/datatype"
-	"github.com/fiorix/go-diameter/diam/dict"
+	"github.com/istperm/go-diameter/diam/datatype"
+	"github.com/istperm/go-diameter/diam/dict"
 )
 
 // GroupedAVPType is the identifier of the GroupedAVP data type.
